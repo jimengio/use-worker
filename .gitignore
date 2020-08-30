@@ -1,6 +1,12 @@
-dist/
+/lib
+/esm
 
 node_modules/
 .cache/
 
+.DS_Store
+
 .rts2_cache_*
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
