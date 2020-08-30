@@ -1,11 +1,11 @@
 import React, { DependencyList } from 'react'
-import dequal from 'dequal'
+import isEqual from 'lodash.isequal'
 
 export const useDeepCallback = <T extends (...args: any[]) => any>(
   callback: T, dependencies: DependencyList,
 ) => {
   const prevDependencies = React.useRef<DependencyList>(dependencies)
-  const areDeepsEqual = dequal(prevDependencies.current, dependencies)
+  const areDeepsEqual = isEqual(prevDependencies.current, dependencies)
   if (!areDeepsEqual) {
     prevDependencies.current = dependencies
   }

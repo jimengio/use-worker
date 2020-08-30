@@ -42,7 +42,8 @@
   ],
   "dependencies": {
     "@types/lodash.clone": "^4.5.6",
-    "dequal": "^1.0.0",
-    "lodash.clone": "^4.5.0"
+    "@types/lodash.isequal": "^4.5.5",
+    "lodash.clone": "^4.5.0",
+    "lodash.isequal": "^4.5.0"
   }
 }
