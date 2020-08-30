@@ -1,2 +1,2 @@
-export { useWorker } from './useWorker'
-export { WORKER_STATUS } from './lib/status'
+export { useWorker, WorkerOptions, WorkerController } from "./useWorker";
+export { WORKER_STATUS, TRANSFERABLE_TYPE } from "./types";

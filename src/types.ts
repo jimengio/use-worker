@@ -1,0 +1,12 @@
+export enum TRANSFERABLE_TYPE {
+  AUTO = "auto",
+  NONE = "none",
+}
+
+export enum WORKER_STATUS {
+  PENDING = "PENDING",
+  SUCCESS = "SUCCESS",
+  RUNNING = "RUNNING",
+  ERROR = "ERROR",
+  TIMEOUT_EXPIRED = "TIMEOUT_EXPIRED",
+}

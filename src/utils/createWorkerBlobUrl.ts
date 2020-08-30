@@ -1,6 +1,7 @@
-import { TRANSFERABLE_TYPE } from 'src/useWorker'
-import jobRunner from './jobRunner'
-import remoteDepsParser from './remoteDepsParser'
+/* eslint-disable @typescript-eslint/restrict-template-expressions */
+import { TRANSFERABLE_TYPE } from "../types";
+import jobRunner from "./jobRunner";
+import remoteDepsParser from "./remoteDepsParser";
 
 /**
  * Converts the "fn" function into the syntax needed to be executed within a web worker
@@ -17,18 +18,20 @@ import remoteDepsParser from './remoteDepsParser'
  * .catch(postMessage(['ERROR', error])"
  */
 const createWorkerBlobUrl = (
-  fn: Function, deps: string[], transferable: TRANSFERABLE_TYPE,
-) => {
+  fn: (...fnArgs: any[]) => any,
+  deps: string[],
+  transferable: TRANSFERABLE_TYPE
+): string => {
   const blobCode = `
     ${remoteDepsParser(deps)};
     onmessage=(${jobRunner})({
       fn: (${fn}),
       transferable: '${transferable}'
     })
-  `
-  const blob = new Blob([blobCode], { type: 'text/javascript' })
-  const url = URL.createObjectURL(blob)
-  return url
-}
+  `;
+  const blob = new Blob([blobCode], { type: "text/javascript" });
+  const url = URL.createObjectURL(blob);
+  return url;
+};
 
-export default createWorkerBlobUrl
+export default createWorkerBlobUrl;
