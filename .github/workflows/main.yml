@@ -36,3 +36,6 @@ jobs:
     
     - name: Run lint
       run: yarn eslint
+
+    - name: Run test
+      run: yarn test
