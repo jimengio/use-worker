@@ -1,4 +1,4 @@
-# useWoker
+# use-worker
 
 Use web workers with react hook
 
@@ -10,7 +10,7 @@ Fork: https://github.com/alewin/useWorker
 
 ```jsx
 import React from "react";
-import { useWorker } from "@jimengio/useworker";
+import { useWorker } from "@jimengio/use-worker";
 
 const numbers = [...Array(5000000)].map((e) => ~~(Math.random() * 1000000));
 const sortNumbers = (nums) => nums.sort();
@@ -36,6 +36,9 @@ const Example = () => {
 ```shell
 # build package
 yarn build
+
+# tests
+yarn test
 
 # lint
 yarn eslint

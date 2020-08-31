@@ -9,6 +9,7 @@
     "build": "rm -rf ./lib/* ./esm/* && yarn build:cjs && yarn build:es",
     "build:cjs": "tsc",
     "build:es": "tsc -m ESNext --outDir ./esm",
+    "test": "jest -c jest.json",
     "eslint": "eslint src/**/*",
     "prettier": "prettier --write './src/**/*.{ts,tsx}' --config ./.prettierrc",
     "prepare": "yarn build"
@@ -17,6 +18,8 @@
     "react": "^16.8.0"
   },
   "devDependencies": {
+    "@testing-library/react-hooks": "^3.4.1",
+    "@types/jest": "^26.0.10",
     "@types/react": "^16.9.46",
     "@types/react-dom": "^16.9.8",
     "@typescript-eslint/eslint-plugin": "^3.3.0",
@@ -26,9 +29,12 @@
     "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-react": "^7.20.0",
     "eslint-plugin-react-hooks": "^4.0.4",
+    "jest": "^26.4.2",
     "prettier": "^2.1.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-test-renderer": "^16.13.1",
+    "ts-jest": "^26.3.0",
     "typescript": "^3.9.7"
   },
   "description": "useWorker() - Web worker using React hook",
