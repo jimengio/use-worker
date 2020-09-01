@@ -8,6 +8,10 @@ Fork: https://github.com/alewin/useWorker
 
 ## Usage
 
+```shell
+yarn add @jimengio/use-worker
+```
+
 ```jsx
 import React from "react";
 import { useWorker } from "@jimengio/use-worker";
@@ -16,7 +20,7 @@ const numbers = [...Array(5000000)].map((e) => ~~(Math.random() * 1000000));
 const sortNumbers = (nums) => nums.sort();
 
 const Example = () => {
-  const [sortWorker] = useWorker(sortNumbers);
+  const { callback: sortWorker } = useWorker(sortNumbers);
 
   const runSort = async () => {
     const result = await sortWorker(numbers); // non-blocking UI

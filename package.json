@@ -46,7 +46,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jimengio/useWorker.git"
+    "url": "git+https://github.com/jimengio/use-worker.git"
   },
   "keywords": [
     "react",

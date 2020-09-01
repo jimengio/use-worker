@@ -5,11 +5,6 @@ import { TRANSFERABLE_TYPE, WORKER_STATUS } from "./types";
 import createWorkerBlobUrl from "./utils/createWorkerBlobUrl";
 import { useDeepCallback } from "./utils/useDeepCallback";
 
-export type WorkerController = {
-  status: WORKER_STATUS;
-  kill: () => void;
-};
-
 export type WorkerOptions = {
   timeout?: number;
   remoteDependencies: string[];
@@ -34,7 +29,11 @@ const DEFAULT_OPTIONS: WorkerOptions = {
 export const useWorker = <T extends any[], R extends any>(
   fn: (...fnArgs: T[]) => R,
   options: Partial<WorkerOptions> = DEFAULT_OPTIONS
-): [(...fnArgs: T[]) => Promise<R>, WorkerController] => {
+): {
+  callback: (...fnArgs: T[]) => Promise<R>;
+  status: WORKER_STATUS;
+  kill: () => void;
+} => {
   const [workerStatus, _setWorkerStatus] = useState<WORKER_STATUS>(
     WORKER_STATUS.PENDING
   );
@@ -167,11 +166,6 @@ export const useWorker = <T extends any[], R extends any>(
     [options.autoTerminate, generateWorker, callWorker]
   );
 
-  const workerController = {
-    status: workerStatus,
-    kill: killWorker,
-  };
-
   useEffect(
     () => () => {
       killWorker();
@@ -179,5 +173,5 @@ export const useWorker = <T extends any[], R extends any>(
     [killWorker]
   );
 
-  return [workerHook, workerController];
+  return { callback: workerHook, status: workerStatus, kill: killWorker };
 };
