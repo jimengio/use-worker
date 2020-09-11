@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef, useCallback } from "react";
-import clone from "lodash.clone";
 
 import { TRANSFERABLE_TYPE, WORKER_STATUS } from "./types";
 import createWorkerBlobUrl from "./utils/createWorkerBlobUrl";
@@ -135,7 +134,7 @@ export const useWorker = <T extends any[], R extends any>(
               )
             : [];
 
-        worker.current?.postMessage(clone([workerArgs]), transferList);
+        worker.current?.postMessage([workerArgs], transferList);
 
         setWorkerStatus(WORKER_STATUS.RUNNING);
       });
