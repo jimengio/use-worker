@@ -27,10 +27,10 @@ const DEFAULT_OPTIONS: WorkerOptions = {
  * @param {Object} options useWorker option params
  */
 export const useWorker = <T extends any[], R extends any>(
-  fn: (...fnArgs: T[]) => R,
+  fn: (...fnArgs: T) => R,
   options: Partial<WorkerOptions> = DEFAULT_OPTIONS
 ): {
-  callback: (...fnArgs: T[]) => Promise<R>;
+  callback: (...fnArgs: T) => Promise<R>;
   status: WORKER_STATUS;
   kill: () => void;
 } => {
@@ -116,7 +116,7 @@ export const useWorker = <T extends any[], R extends any>(
   }, [fn, options, killWorker]);
 
   const callWorker = useCallback(
-    (...workerArgs: T[]) => {
+    (...workerArgs: T) => {
       const { transferable = DEFAULT_OPTIONS.transferable } = options;
       return new Promise<R>((resolve, reject) => {
         promise.current = {
@@ -144,7 +144,7 @@ export const useWorker = <T extends any[], R extends any>(
   );
 
   const workerHook = useCallback(
-    (...fnArgs: T[]) => {
+    (...fnArgs: T) => {
       const terminate =
         options.autoTerminate != null
           ? options.autoTerminate
